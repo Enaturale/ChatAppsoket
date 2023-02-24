@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useLayoutEffect, useEffect} from "react";
 import { View, Text, Pressable, FlatList, SafeAreaView } from 'react-native'
 import { styles } from "../utils/Styles";
 
@@ -6,7 +6,33 @@ import EditBtn from "@expo/vector-icons/Feather"
 
 import ChatComponents from "../Components/ChatComponents";
 
+import EditModal from "../Components/EditModal";
+import socket from "../utils/Socket";
+
 export default function Chat() {
+    //state to show the modal
+    const [visible, setVisible] = useState(false);
+
+    //state for the chat rooms created
+    const [room, setRooms]= useState([])
+
+    //immediately chat screen comes up?
+    useLayoutEffect(() => {
+      function fetchGroups(){
+        fetch("http://192.168.100.27:3000/api")
+        .then((res) => res.json())
+        .then((data) =>  setRooms(data))
+        .catch((err) => console.error(err))
+      }
+      fetchGroups();
+    }, [])
+
+    //this runs whenever there is a trigger from the backend
+    useEffect(() => {
+      socket.on("roomsList", (room) => {
+        setRooms(room)
+      })
+    }, [socket])
 
     //dummy list of rooms
     const rooms = [
@@ -45,7 +71,25 @@ export default function Chat() {
                     user: "Victoria",
                 },
             ],
-        }
+        },
+        {
+            id: "3",
+            name: "Team Ballons",
+            messages: [
+                // {
+                //     id: "2a",
+                //     text: "Guys, who's awake? 🙏🏽",
+                //     time: "12:50",
+                //     user: "Team Leader",
+                // },
+                // {
+                //     id: "2b",
+                //     text: "What's up? 🧑🏻‍💻",
+                //     time: "03:50",
+                //     user: "Victoria",
+                // },
+            ],
+        },
 
     ]
 
@@ -55,7 +99,7 @@ export default function Chat() {
                 <View style={styles.chatheader}>
                     <Text style={styles.chatheading}>Chats</Text>
 
-                    <Pressable onPress={() => console.log("Button Pressed.")}>
+                    <Pressable onPress={() =>setVisible(true)}>
                         <EditBtn name="edit" size={24} color="green" />
                     </Pressable>
                 </View>
@@ -71,10 +115,11 @@ export default function Chat() {
                 ) : (
                     <View style={styles.chatemptyContainer}>
                         <Text style={styles.chatemptyText}>No Rooms Created!</Text>
-                        <Text>Click on icon to createa chat room.</Text>
+                        <Text>Click on icon to create a chat room.</Text>
                     </View>
                 )}
             </View>
+            {visible ? <EditModal setVisible={setVisible} /> : ""}
         </SafeAreaView>
     )
 

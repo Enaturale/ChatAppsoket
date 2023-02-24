@@ -10,38 +10,44 @@ export const styles = StyleSheet.create({
         width: "100%",
     },
     loginheading: {
-        fontSize: 26,
+        fontSize: 30,
         marginBottom: 10,
+        fontWeight: 'bold'
     },
     logininputContainer: {
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
+        marginTop: 20,
+        marginBottom: 10
     },
     logininput: {
         borderWidth: 1,
         width: "90%",
         padding: 8,
-        borderRadius: 2,
+        borderRadius: 3,
+        marginBottom: 15,
     },
     loginbutton: {
         backgroundColor: "green",
         padding: 12,
         marginVertical: 10,
         width: "60%",
-        borderRadius: "50%",
+        borderRadius: 4,
         elevation: 1,
     },
     loginbuttonText: {
         textAlign: "center",
         color: "#fff",
         fontWeight: "600",
+        fontSize: 20,
     },
     chatscreen: {
         backgroundColor: "#F7F7F7",
         flex: 1,
         padding: 10,
         position: "relative",
+        marginTop: 50,
     },
     chatheading: {
         fontSize: 24,
@@ -71,9 +77,14 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    chatemptyText: { fontWeight: "bold", fontSize: 24, paddingBottom: 30 },
+    chatemptyText: {
+        fontWeight: "bold",
+        fontSize: 24,
+        paddingBottom: 30,
+    },
     messagingscreen: {
         flex: 1,
+        marginTop: 65,
     },
     messaginginputContainer: {
         width: "100%",
@@ -94,10 +105,10 @@ export const styles = StyleSheet.create({
     messagingbuttonContainer: {
         width: "30%",
         backgroundColor: "green",
-        borderRadius: 3,
+        // borderRadius: 3,
         alignItems: "center",
         justifyContent: "center",
-        borderRadius: 50,
+        borderRadius: 10,
     },
     modalbutton: {
         width: "40%",
@@ -138,6 +149,7 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         marginBottom: 15,
         textAlign: "center",
+        color: 'green'
     },
     mmessageWrapper: {
         width: "100%",
@@ -162,7 +174,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 15,
         backgroundColor: "#fff",
         height: 80,
-        marginBottom: 10,
+        marginBottom: 15,
     },
     cavatar: {
         marginRight: 15,
