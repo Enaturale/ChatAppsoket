@@ -19,7 +19,7 @@ export default function Chat() {
     //immediately chat screen comes up?
     useLayoutEffect(() => {
       function fetchGroups(){
-        fetch("http://192.168.100.27:3000/api")
+        fetch("http://192.168.131.90:3000/api")
         .then((res) => res.json())
         .then((data) =>  setRooms(data))
         .catch((err) => console.error(err))

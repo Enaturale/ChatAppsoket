@@ -8,7 +8,7 @@ import socket from "../utils/Socket";
 
 import Back from "@expo/vector-icons/Ionicons";
 
-export default function Messaging({ route, navigation }) {
+export default function Messaging({ route, navigation, item }) {
    
     //state to store dummy messages
     const [chatMessages, setChatMessages] = useState([
@@ -103,12 +103,14 @@ export default function Messaging({ route, navigation }) {
                 <Back name="arrow-back-outline" color="green" size={45}  />
             </Pressable>
 
+           
+
             <View style={[styles.messagingscreen, { paddingVertical: 15, paddingHorizontal: 10 }]}>
                 {chatMessages[0] ? (
                     <FlatList
                         data={chatMessages}
                         renderItem={({ item }) => (
-                            <MessagingComp item={item} user={user} />
+                            <MessagingComp item={item} user={user}/>
                         )}
                         keyExtractor={(item) => item.id}
                     />

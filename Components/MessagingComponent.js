@@ -5,13 +5,14 @@ import { styles } from '../utils/Styles';
 
 import PersonIcon from "@expo/vector-icons/Ionicons"
 
-export default function MessagingComp({ item, user }) {
+export default function MessagingComp({ item, user, }) {
 
     const status = item.user !== user;
 
    return(
     <View>
         <View style={status ? styles.mmessageWrapper : [styles.mmessageWrapper, {alignItems:'flex-end'}]}>
+            {/* <Text>{item.title}</Text> */}
             <View style={{flexDirection:"row", alignItems:"center"}}>
                 <PersonIcon name='person-circle-outline' size={30} color='black' style={styles.mvatar} />
                 
